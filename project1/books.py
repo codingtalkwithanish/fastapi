@@ -4,9 +4,9 @@ app=FastAPI()
 
 BOOKS=[
     {'title':'Title one','Author':'Author One','category':'math'},
-    {'title':'Title two','Author':'Author Two','category':'science'},
+    {'title':'Title two','Author':'Author Two','category':'math'},
     {'title':'Title three','Author':'Author Three','category':'english'},
-    {'title':'Title four','Author':'Author Four','category':'geography'},
+    {'title':'Title four','Author':'Author Four','category':'computer'},
     {'title':'Title five','Author':'Author Five','category':'computer'}
 ]
 
@@ -26,4 +26,11 @@ def read_book(book_title:str):
 #query parameter is when you pass values using key value pair
 #passed in url after question mark
 
-    
+@app.get("/books/")       
+def read_category_by_query(category:str):
+    book_category=[]
+    for book in BOOKS:
+        if book.get('category')==category:
+            book_category.append(book)
+    return book_category
+
